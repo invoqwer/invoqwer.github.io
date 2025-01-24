@@ -2,4 +2,53 @@
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
-gtag('config', 'G-B3YYC7EWH7');</script><title>MT</title><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><link rel="stylesheet" href="main.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"><script defer="defer" src="main.js"></script><link href="main.css" rel="stylesheet"></head><body><div class="container"><div class="background" id="farmlands"></div><div class="card" id="projects"><div class="card-title-container"><div class="card-title">Projects</div><div class="card-subtitle">Krabs Brother.</div></div><div class="card-body"><div class="summary"><i>Under Construction</i></div><div class="webring-container"><div class="latex4000Webring"><a href="https://nonacademic.net" title="Collective">Latex 4000</a><div class="latex4000WebringButtons"><a href="https://nonacademic.net/ring?action=prev&from=invoker" title="Previous">←</a> <a href="https://nonacademic.net/ring?action=rand&from=invoker" title="Random">Random</a> <a href="https://nonacademic.net/ring?action=next&from=invoker" title="Next">→</a></div></div></div></div></div></div><script src="main.js"></script></body></html>
+gtag('config', 'G-B3YYC7EWH7');</script><title>MT</title><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><link rel="stylesheet" href="main.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"><script defer="defer" src="main.js"></script><link href="main.css" rel="stylesheet"></head><body><div class="container"><div class="background" id="farmlands"></div><div class="card" id="projects"><div class="card-title-container"><div class="card-title">Projects</div><div class="card-subtitle">Krabs Brother.</div></div><div class="card-body"><div id="choose-container">Decide your fate.<div><a href="javascript:choose()">!ch live | die</a></div><div id="choose-result">...</div><style>#choose-container {
+    text-align: center;
+    padding-bottom: 1em;
+}</style><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><script>async function coinflip() {
+    url='https://api.random.org/json-rpc/4/invoke'
+
+    data = {
+        "jsonrpc": "2.0",
+        "method": "generateIntegers",
+        "params": {
+            "apiKey": "ae54dafe-dc8a-41d7-8b26-9fd6e8f6feb3",
+            "n": 1,
+            "min": 0,
+            "max": 1,
+            "replacement": true,
+            "base": 10
+        },
+        "id": 683489
+    }
+
+    return new Promise((resolve) => {
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        .then((res) => {
+            if (res.status != 200) {
+                console.log(res);
+                resolve(0);
+            }
+            return res.json();
+        })
+        .then((json) => {
+            const result = json.result.random.data[0];
+            resolve(result);
+        });
+    });
+}
+
+async function choose() {
+    const result = document.getElementById('choose-result');
+    result.textContent = "..."; 
+    const status = await coinflip();
+    const statusText = status ? "die 💀" : "live 😇";
+    console.log(`Do not tempt destiny. ${statusText.toUpperCase()}.`);
+    result.textContent = statusText;
+};</script></div><div class="webring-container"><div class="webring"><a href="https://nonacademic.net" title="Collective">Latex 4000</a> <a href="https://nonacademic.net/ring?action=prev&from=invoker" title="Previous">←</a> <a href="https://nonacademic.net/ring?action=rand&from=invoker" title="Random">Random</a> <a href="https://nonacademic.net/ring?action=next&from=invoker" title="Next">→</a></div></div></div></div></div><script src="main.js"></script></body></html>
